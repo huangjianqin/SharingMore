@@ -11,6 +11,10 @@
 		<link rel="stylesheet" href="css/flat-ui.min.css" />
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/style.css">
+		<!--文件上传（下面两个文件）-->
+		<link rel="stylesheet" href="css/fileinput.css" />
+		<link rel="stylesheet" href="css/default.css" />
+
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/stickUp.min.js"></script>
@@ -19,25 +23,27 @@
 		<script type="text/javascript" src="js/zepto.min.js"></script>
 		<script type="text/javascript" src="js/iscroll-zoom.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
-		
+		<!--文件上传-->
+		<script type="text/javascript" src="js/fileinput.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+
 		<meta charset="UTF-8">
-		<meta name="apple-mobile-web-app-capable" content="yes">	
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<script type="text/javascript">
-		if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
-			var version = parseFloat(RegExp.$1);
-			if(version>2.3){
-				var phoneScale = parseInt(window.screen.width)/640;
-				document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
-			}else{
-				document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+			if(/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+				var version = parseFloat(RegExp.$1);
+				if(version > 2.3) {
+					var phoneScale = parseInt(window.screen.width) / 640;
+					document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+				} else {
+					document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+				}
+			} else {
+				document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
 			}
-		}else{
-			document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
-		}
 		</script>
-	
-	
+
 	</head>
 
 	<body style="background-color: #444;">
@@ -81,7 +87,7 @@
 									<a href="#">Link</a>
 								</li>
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+									<img style="width:53px;height:53px" alt="..." src="img/HBuilder.png">
 								</li>
 							</ul>
 						</div>
@@ -98,58 +104,34 @@
 					<div id="nav">
 						<ul>
 							<li>
-								<a href="#">首页</a>
+								<a href="#" onclick="show_headpage()">首页</a>
 							</li>
 							<li>
-								<a href="#">我的分享</a>
+								<a href="#" onclick="show_my_share();">我的分享</a>
 							</li>
 							<li>
-								<a href="#">收藏用户</a>
+								<a href="#" onclick="show_collect_user();">收藏用户</a>
 							</li>
 							<li>
-								<a href="#">收藏分享</a>
+								<a href="#" onclick="show_collect_share();">收藏分享</a>
 							</li>
 						</ul>
 					</div>
 					<!--展示内容-->
 					<div class="main">
-						 
-						 
-						 <div class="row">
-							 <div class="col-sm-6 col-md-12">
-							    <div class="thumbnail">
-								    <img src="img/pic00.jpg" alt="...">
-								    <img src="img/pic01.jpg" alt="...">
-								    <div class="caption">
-								    <h3>娱乐圈扒姐</h3>
-								    <p>杨幂回应刘恺威出轨事件后，其本人也发微博回应，但看到这个视频，刘恺威打脸次数还真多，什么事都让老婆站在前面背锅可不是大丈夫所为</p>
-								    <p><a href="#" class="btn btn-primary" role="button">分享</a>
-								    <a href="#" class="btn btn-primary" role="button">评论</a>
-								    <a href="#" class="btn btn-default" role="button">点赞</a></p>
-								    </div>
-							    </div>
-							 </div>
-						</div>
-
-						 
-						<form name="form" action="" method="POST" enctype="multipart/form-data">
-							<div class="wrap">
-								<div class="album-old">
-									<div class="upload-btn btn-old"><input type="file" name="" id=""></div>
-									<div class="upload-img "></div>	
-								</div>
-								
-								<div class="bg"></div>
-								<div class="textarea">
-									<textarea placeholder="发射弹幕"></textarea>
-								</div>
-								<div class="submit"></div>
+						<form enctype='multipart/form-data'>
+							<div class='form-group'>
+								<input id='file-4' type='file' class='file' data-upload-url='#'>
+								<button class='btn btn-primary'>上传</button>
+								<button class='btn btn-default' type='reset'>重置</button>
 							</div>
 						</form>
-						
-						
+						<div id="main_content">
+							<center><h1>点击首页试试看</h1></center>
+						</div>
 					</div>
 				</div>
+
 				<div class="col-xs-3">
 					<p>点赞板</p>
 					<ul id="myTab" class="nav nav-tabs">
@@ -197,6 +179,18 @@
 		</script>
 	</body>
 	<script type="text/javascript">
+		$("#file-4").fileinput({
+			uploadExtraData: {
+				kvId: '10'
+			}
+		});
+		$(document).ready(function() {
+			$("#test-upload").fileinput({
+				'showPreview': false,
+				'allowedFileExtensions': ['jpg', 'png', 'gif'],
+				'elErrorContainer': '#errorBlock'
+			});
+		});
 		//initiating jQuery
 		jQuery(function($) {
 			$(document).ready(function() {

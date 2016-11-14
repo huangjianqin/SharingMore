@@ -4,16 +4,21 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <!-- web绑定的ApplicationContext的url-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-conf/applicationContext.xml</param-value>
+        <param-value>classpath:spring-conf/applicationContext.xml,
+            classpath:spring-conf/applicationContext.xml/datasource.xml</param-value>
     </context-param>
+    <!-- 加载web绑定spring容器-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!-- Spring MVC-->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 跟DispatcherServlet绑定的Spring容器-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-conf/dispatcher-servlet.xml</param-value>
@@ -25,4 +30,36 @@
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+
+    <!-- 配置hibernate Session的持久时间,一整个request session,否则就是一个request session只能Session一次-->
+    <!-- 目的是为了让session在请求中一直打开-->
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 配置Spring自带的字符过滤器-->
+    <filter>
+        <filter-name>springUTF-8Encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springUTF-8Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 </web-app>

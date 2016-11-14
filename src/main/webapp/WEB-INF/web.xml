@@ -8,7 +8,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-conf/applicationContext.xml,
-            classpath:spring-conf/applicationContext.xml/datasource.xml</param-value>
+            classpath:spring-conf/datasource.xml</param-value>
     </context-param>
     <!-- 加载web绑定spring容器-->
     <listener>
@@ -43,7 +43,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 配置Spring自带的字符过滤器-->
+     <!--配置Spring自带的字符过滤器-->
     <filter>
         <filter-name>springUTF-8Encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

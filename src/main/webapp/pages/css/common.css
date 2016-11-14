@@ -11,7 +11,7 @@
     border-bottom: 1px solid rgba(0,0,0,.2);
     border-top: 1px solid rgba(255,255,255,.1);
     display: block;
-    padding: .6em 2em;
+    padding: .6em 0em .6em;
     width: 100%;
 }
 .container{  
@@ -25,7 +25,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
-    margin-left: 15%;
+    margin-left: 8%;
     position: fixed;
     overflow: hidden;
     overflow-y: scroll;
@@ -34,6 +34,6 @@
     top: 4em;
     margin-right: 0px;
     bottom: 0;
-    width: 45%;
+    width: 52%;
     background: #fff;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
 <html>
 
 	<head>
@@ -15,6 +16,7 @@
 		<!--文件上传（下面两个文件）-->
 		<link rel="stylesheet" href="css/fileinput.css" />
 		<link rel="stylesheet" href="css/default.css" />
+		<link rel="stylesheet" href="css/button-style.css" />
 
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -120,13 +122,12 @@
 					</div>
 					<!--展示内容-->
 					<div class="main">
-						<form enctype='multipart/form-data'>
-							<div class='form-group'>
-								<input id='file-4' type='file' class='file' data-upload-url='#'>
-								<button class='btn btn-primary'>上传</button>
-								<button class='btn btn-default' type='reset'>重置</button>
-							</div>
-						</form>
+						<center><a href="#" id="bnt_share" onclick="show_comment();" class="btn btn-lg light-black button-right"><i class="fa fa-life-ring"></i>点击下拉</a></center>
+						<div id="comment_content">
+							
+						</div>
+						
+						<hr />
 						<div id="main_content">
 							<center><h1>点击首页试试看</h1></center>
 						</div>

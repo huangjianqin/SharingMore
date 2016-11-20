@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.sharingmore.entity">
+	<class name="Comment" table="Comment">
+		<id name="id" column="comment_id">
+			<generator class="identity">
+			</generator>
+		</id>
+		<many-to-one name="observer" 
+					 class="User"
+					 column="user_id"
+					 not-null="true"/>
+		<property name="text" type="string"></property>
+		<many-to-one name="share"
+					 class="Share"
+					 column="share_id"
+					 not-null="true"
+		></many-to-one>
+		<property name="commentDate" type="date"></property>
+		<set name="replies">
+			<key column="reply_id"></key>
+			<one-to-many class="Reply"/>
+		</set>
+	</class>
+</hibernate-mapping>

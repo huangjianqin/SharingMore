@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="org.sharingmore.entity">
+	<class name="User" table="user">
+		<id name="id" column="user_id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string"></property>
+		<property name="password" type="string"></property>
+		<property name="tel" type="string"></property>
+		<property name="sex" type="string"></property>
+		<property name="birth" type="date"></property>
+		<set name="shares">
+			<key column="user_id"></key>
+			<one-to-many class="Share"/>
+		</set>
+		
+		<set name="collectUsers" table="user_user">
+			<key column="user_id"></key>
+			<many-to-many class="User" column="user1_id" ></many-to-many>
+		</set >
+			
+		<set name="collectShares" table="user_share">
+			<key column="user_id"></key>
+			<many-to-many class="Share" 
+						  column="share_id"
+						  >
+			</many-to-many>
+		</set>
+		
+		<set name="likes" table="user_like">
+			<key column="user_id"></key>
+			<many-to-many class="Share" column="share_id"/>
+		</set>
+	</class>
+</hibernate-mapping>

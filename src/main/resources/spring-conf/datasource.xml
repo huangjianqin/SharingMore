@@ -8,7 +8,7 @@
   <!-- 配置mysql数据源-->
    <bean id="dataSourceForMYSQL" class="com.mchange.v2.c3p0.ComboPooledDataSource"
          p:driverClass="com.mysql.jdbc.Driver"
-         p:jdbcUrl="jdbd:mysql://localhost:3306/sharingmoring"
+         p:jdbcUrl="jdbc:mysql://localhost:3306/sharingmore"
          p:user="root"
          p:password="123456"
          p:minPoolSize="2"
@@ -20,20 +20,20 @@
 
    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
          p:dataSource-ref="dataSourceForMYSQL">
-          <property name="annotatedClasses">
-                 <list>
+       <property name="hibernateProperties">
+           <value>
+                hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+                hibernate.show_sql=true
+                hibernate.format_sql=true
+                hibernate.hbm2ddl.auto=create
+           </value>
+       </property>
 
-                 </list>
-          </property>
-
-          <property name="hibernateProperties">
-                 <value>
-                        hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
-                        hibernate.hbm2ddl.auto=update
-                        hibernate.show_sql=true
-                        hibernate.format_sql=true
-                 </value>
-          </property>
+       <property name="mappingDirectoryLocations">
+           <list>
+               <value>classpath:hibernate-conf/mapping</value>
+           </list>
+       </property>
    </bean>
 
    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager"

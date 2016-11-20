@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.sharingmore.entity">
+	<class name="Reply" table="reply">
+		<id name="id" column="reply_id">
+			<generator class="identity">
+			</generator>
+		</id>
+		
+		<property name="text" type="string"></property>
+		<many-to-one name="respondent"
+					 unique="true"
+					 class="User"
+					 column="respondent_id"
+					 />
+		<many-to-one name="byReply"
+					 unique="true"
+					 class="User"
+					 column="byReply_id"
+					 />
+		<property name="replyDate" type="date"></property>
+		<many-to-one name="comment"
+					 class="Comment"
+					 column="comment_id"
+					 not-null="true"
+		></many-to-one>
+	</class>
+</hibernate-mapping>

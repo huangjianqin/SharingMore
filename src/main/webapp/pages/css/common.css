@@ -25,15 +25,15 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
-    margin-left: 8%;
+    margin-left: 13%;
     position: fixed;
     overflow: hidden;
     overflow-y: scroll;
     border-top-left-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,.6);
-    top: 4em;
-    margin-right: 0px;
+    top: 5em;
+    margin-left: 0px;
     bottom: 0;
-    width: 52%;
+    width: 56%;
     background: #fff;
 }

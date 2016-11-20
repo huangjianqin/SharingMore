@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@page contentType="text/html"%>
-<%@page pageEncoding="UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8"%>
 <html>
 
 	<head>
@@ -47,6 +46,34 @@
 			}
 		</script>
 
+		<style type="text/css">
+			#searchBox{
+				margin-left: 20%;
+			}
+			#bnt_share{
+				background: #3498db;
+			}
+			
+			/*以下四个用于修改滚动条*/
+			::-webkit-scrollbar{
+				width: 8px;
+				height: 16px;
+			}
+			::-webkit-scrollbar-track-piece{
+				background: rgba(158, 188, 188, 0.72);
+				-webkit-border-radius: 6px;
+			}
+			::-webkit-scrollbar-thumb:vertical{
+				background-color: rgba(0, 77, 170, 0.6);
+				-webkit-border-radius: 6px;
+			}
+			::-webkit-scrollbar-thumb:horizontal{
+				background-color: rgba(158, 188, 188, 0.72);
+				-webkit-border-radius: 6px;
+			}
+			
+		</style>
+
 	</head>
 
 	<body style="background-color: #444;">
@@ -55,40 +82,21 @@
 				<nav class="navbar navbar-default" role="navigation">
 					<div class="container-fluid">
 						<!-- Brand and toggle get grouped for better mobile display -->
+						<%-- logo--%>
 						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				      </button>
 							<a class="navbar-brand" href="#">Brand</a>
-
 						</div>
-
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-								<li class="active">
-									<a href="#">Link</a>
-								</li>
-								<li>
-									<a href="#">Link</a>
-								</li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-								</li>
-							</ul>
-							<form class="navbar-form navbar-left" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
+							<%-- 搜索框--%>
+							<form class="navbar-form navbar-left" role="search" id="searchBox">
+								<div class="form-group" >
+									<input type="text" class="form-control" placeholder="Search" id="searchKey">
 								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
+								<button type="submit" class="btn btn-default">搜索</button>
 							</form>
+							<%-- 用户头像--%>
 							<ul class="nav navbar-nav navbar-right">
-								<li>
-									<a href="#">Link</a>
-								</li>
 								<li class="dropdown">
 									<img style="width:53px;height:53px" alt="..." src="img/HBuilder.png">
 								</li>
@@ -102,31 +110,36 @@
 			</div>
 
 			<div class="row">
-				<div class="col-xs-9">
-					<!--left-->
-					<div id="nav">
-						<ul>
-							<li>
-								<a href="#" onclick="show_headpage()">首页</a>
-							</li>
-							<li>
-								<a href="#" onclick="show_my_share();">我的分享</a>
-							</li>
-							<li>
-								<a href="#" onclick="show_collect_user();">收藏用户</a>
-							</li>
-							<li>
-								<a href="#" onclick="show_collect_share();">收藏分享</a>
-							</li>
-						</ul>
+				<div class="col-xs-1">
+					<div id="left">
+						<!--left-->
+						<div id="nav">
+							<ul>
+								<li>
+									<a href="#" style="float: left;" onclick="show_headpage()">首页</a>
+								</li>
+								<li>
+									<a href="#" onclick="show_my_share();">我的分享</a>
+								</li>
+								<li>
+									<a href="#" onclick="show_collect_user();">收藏用户</a>
+								</li>
+								<li>
+									<a href="#" onclick="show_collect_share();">收藏分享</a>
+								</li>
+							</ul>
+						</div>
 					</div>
+				</div>
+
+				<div class="col-xs-8">
+					<center><a style="z-index: 3;width: 100%;opacity: 0.1" href="#" id="bnt_share" onclick="show_comment();" onmouseout="this.style.opacity = 0.1;" onmouseover="this.style.opacity = 1;"
+							   class="btn btn-lg light-black button-right"><i class="fa fa-life-ring"></i><span style="color: black;">点击下拉</span></a></center>
+
 					<!--展示内容-->
 					<div class="main">
-						<center><a href="#" id="bnt_share" onclick="show_comment();" class="btn btn-lg light-black button-right"><i class="fa fa-life-ring"></i>点击下拉</a></center>
 						<div id="comment_content">
-							
 						</div>
-						
 						<hr />
 						<div id="main_content">
 							<center><h1>点击首页试试看</h1></center>
